@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Casos de Teste</h1>
+<p><a class="btn" href="{{ url_for('testcase_new') }}">+ Novo Caso de Teste</a></p>
+
+<table>
+  <tr>
+    <th>Título</th>
+    <th>Passos</th>
+    <th>Resultado esperado</th>
+    <th>Status</th>
+    <th>Ações</th>
+  </tr>
+  {% for tc in test_cases %}
+  <tr>
+    <td><strong>{{ tc.title }}</strong><br><small>{{ tc.preconditions }}</small></td>
+    <td><small>{{ tc.steps }}</small></td>
+    <td><small>{{ tc.expected_result }}</small></td>
+    <td>
+      <form class="inline" method="POST" action="{{ url_for('testcase_update_status', tc_id=tc.id) }}">
+        <select class="status-select" name="status" onchange="this.form.submit()">
+          <option value="not_run" {{ 'selected' if tc.status=='not_run' }}>not_run</option>
+          <option value="passed" {{ 'selected' if tc.status=='passed' }}>passed</option>
+          <option value="failed" {{ 'selected' if tc.status=='failed' }}>failed</option>
+        </select>
+      </form>
+    </td>
+    <td>
+      <form class="inline" method="POST" action="{{ url_for('testcase_delete', tc_id=tc.id) }}" onsubmit="return confirm('Excluir este caso de teste?');">
+        <button class="btn" type="submit" style="background:#c0392b;">Excluir</button>
+      </form>
+    </td>
+  </tr>
+  {% else %}
+  <tr><td colspan="5">Nenhum caso de teste cadastrado.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

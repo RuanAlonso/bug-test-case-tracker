@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Bugs</h1>
+<p><a class="btn" href="{{ url_for('bug_new') }}">+ Novo Bug</a></p>
+
+<div class="filters">
+  <a href="{{ url_for('bugs_list') }}" class="{{ 'active' if not status_filter }}">Todos</a>
+  <a href="{{ url_for('bugs_list', status='open') }}" class="{{ 'active' if status_filter=='open' }}">Abertos</a>
+  <a href="{{ url_for('bugs_list', status='in_progress') }}" class="{{ 'active' if status_filter=='in_progress' }}">Em andamento</a>
+  <a href="{{ url_for('bugs_list', status='resolved') }}" class="{{ 'active' if status_filter=='resolved' }}">Resolvidos</a>
+  <a href="{{ url_for('bugs_list', status='closed') }}" class="{{ 'active' if status_filter=='closed' }}">Fechados</a>
+</div>
+
+<table>
+  <tr>
+    <th>Título</th>
+    <th>Severidade</th>
+    <th>Status</th>
+    <th>Ambiente</th>
+    <th>Ações</th>
+  </tr>
+  {% for bug in bugs %}
+  <tr>
+    <td>
+      <strong>{{ bug.title }}</strong><br>
+      <small>{{ bug.description }}</small>
+    </td>
+    <td><span class="badge sev-{{ bug.severity }}">{{ bug.severity }}</span></td>
+    <td>
+      <form class="inline" method="POST" action="{{ url_for('bug_update_status', bug_id=bug.id) }}">
+        <select class="status-select" name="status" onchange="this.form.submit()">
+          <option value="open" {{ 'selected' if bug.status=='open' }}>open</option>
+          <option value="in_progress" {{ 'selected' if bug.status=='in_progress' }}>in_progress</option>
+          <option value="resolved" {{ 'selected' if bug.status=='resolved' }}>resolved</option>
+          <option value="closed" {{ 'selected' if bug.status=='closed' }}>closed</option>
+        </select>
+      </form>
+    </td>
+    <td>{{ bug.environment }}</td>
+    <td>
+      <form class="inline" method="POST" action="{{ url_for('bug_delete', bug_id=bug.id) }}" onsubmit="return confirm('Excluir este bug?');">
+        <button class="btn" type="submit" style="background:#c0392b;">Excluir</button>
+      </form>
+    </td>
+  </tr>
+  {% else %}
+  <tr><td colspan="5">Nenhum bug cadastrado.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

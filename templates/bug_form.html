@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Novo Bug</h1>
+<div class="form-box">
+  <form method="POST">
+    <label>Título</label>
+    <input type="text" name="title" required>
+
+    <label>Descrição</label>
+    <textarea name="description" rows="3"></textarea>
+
+    <label>Severidade</label>
+    <select name="severity">
+      <option value="low">Baixa</option>
+      <option value="medium" selected>Média</option>
+      <option value="high">Alta</option>
+      <option value="critical">Crítica</option>
+    </select>
+
+    <label>Status</label>
+    <select name="status">
+      <option value="open" selected>Aberto</option>
+      <option value="in_progress">Em andamento</option>
+      <option value="resolved">Resolvido</option>
+      <option value="closed">Fechado</option>
+    </select>
+
+    <label>Passos para reproduzir</label>
+    <textarea name="steps_to_reproduce" rows="4"></textarea>
+
+    <label>Ambiente</label>
+    <input type="text" name="environment" placeholder="Ex: Produção - Chrome 126">
+
+    <label>Caso de teste relacionado (opcional)</label>
+    <select name="test_case_id">
+      <option value="">— nenhum —</option>
+      {% for tc in test_cases %}
+      <option value="{{ tc.id }}">{{ tc.title }}</option>
+      {% endfor %}
+    </select>
+
+    <p><button class="btn" type="submit">Salvar Bug</button></p>
+  </form>
+</div>
+{% endblock %}

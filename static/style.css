@@ -1,0 +1,166 @@
+:root {
+  --navy: #1f3864;
+  --teal: #4fd1e5;
+  --gray: #595959;
+  --bg: #f4f6fb;
+  --critical: #c0392b;
+  --high: #e67e22;
+  --medium: #f1c40f;
+  --low: #27ae60;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: #222;
+  margin: 0;
+}
+
+nav {
+  background: var(--navy);
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+nav a:hover { color: var(--teal); }
+
+nav .brand {
+  font-weight: 700;
+  font-size: 18px;
+  margin-right: auto;
+}
+
+main {
+  max-width: 1000px;
+  margin: 32px auto;
+  padding: 0 24px;
+}
+
+h1 { color: var(--navy); font-size: 24px; }
+
+.card-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  min-width: 150px;
+}
+
+.stat-card .num { font-size: 28px; font-weight: 700; color: var(--navy); }
+.stat-card .label { font-size: 13px; color: var(--gray); text-transform: uppercase; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+th, td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+th { background: #eef1f8; color: var(--navy); }
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.sev-critical { background: var(--critical); }
+.sev-high { background: var(--high); }
+.sev-medium { background: var(--medium); color: #333; }
+.sev-low { background: var(--low); }
+
+.status-open { background: #c0392b; }
+.status-in_progress { background: #e67e22; }
+.status-resolved { background: #2980b9; }
+.status-closed { background: #7f8c8d; }
+.status-not_run { background: #95a5a6; }
+.status-passed { background: #27ae60; }
+.status-failed { background: #c0392b; }
+
+.btn {
+  display: inline-block;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:hover { background: #16294c; }
+
+form.inline { display: inline; }
+
+select.status-select {
+  padding: 4px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.form-box {
+  background: #fff;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  max-width: 600px;
+}
+
+.form-box label {
+  display: block;
+  font-weight: 600;
+  margin-top: 14px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: var(--navy);
+}
+
+.form-box input, .form-box textarea, .form-box select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.filters { margin-bottom: 12px; }
+.filters a {
+  margin-right: 10px;
+  font-size: 13px;
+  color: var(--navy);
+  text-decoration: none;
+}
+.filters a.active { font-weight: 700; text-decoration: underline; }

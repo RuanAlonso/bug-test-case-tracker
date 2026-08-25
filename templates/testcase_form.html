@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Novo Caso de Teste</h1>
+<div class="form-box">
+  <form method="POST">
+    <label>Título</label>
+    <input type="text" name="title" required>
+
+    <label>Pré-condições</label>
+    <textarea name="preconditions" rows="2"></textarea>
+
+    <label>Passos</label>
+    <textarea name="steps" rows="4" required placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea>
+
+    <label>Resultado esperado</label>
+    <textarea name="expected_result" rows="2" required></textarea>
+
+    <label>Status</label>
+    <select name="status">
+      <option value="not_run" selected>Não executado</option>
+      <option value="passed">Passou</option>
+      <option value="failed">Falhou</option>
+    </select>
+
+    <p><button class="btn" type="submit">Salvar Caso de Teste</button></p>
+  </form>
+</div>
+{% endblock %}
